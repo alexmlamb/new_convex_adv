@@ -35,7 +35,7 @@ def train_robust(loader, model, opt, epsilon, epoch, log, verbose,
         if do_mixup:
             batch_size = X.shape[0]
             index_p = torch.randperm(batch_size).cuda()
-            lam = np.random.beta(0.5+1.0, 0.5)
+            lam = np.random.beta(0.2+1.0, 0.2)
             X = lam*X + (1-lam)*X[index_p]
         print("X after train shape", X.shape, lam)
 

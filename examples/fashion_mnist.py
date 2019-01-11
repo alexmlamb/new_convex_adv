@@ -1,5 +1,5 @@
-import waitGPU
-waitGPU.wait(utilization=20)#, available_memory=11000, interval=10)
+#import waitGPU
+#waitGPU.wait(utilization=20)#, available_memory=11000, interval=10)
 
 import torch
 import torch.nn as nn
@@ -8,12 +8,12 @@ import torch.nn.functional as F
 from torch.autograd import Variable
 
 import numpy as np
-import cvxpy as cp
+#import cvxpy as cp
 
 import torchvision.transforms as transforms
 import torchvision.datasets as datasets
 
-import setproctitle
+#import setproctitle
 import argparse
 
 import problems as pblm
@@ -21,7 +21,7 @@ from trainer import *
 
 if __name__ == "__main__": 
     parser = argparse.ArgumentParser()
-    parser.add_argument('--batch_size', type=int, default=50)
+    parser.add_argument('--batch_size', type=int, default=20)
     parser.add_argument('--epochs', type=int, default=20)
     parser.add_argument('--seed', type=int, default=0)
     parser.add_argument("--lr", type=float, default=1e-3)
@@ -37,7 +37,7 @@ if __name__ == "__main__":
     parser.add_argument('--vgg', action='store_true')
     args = parser.parse_args()
     args.prefix = args.prefix or 'fashion_mnist_conv_{:.4f}_{:.4f}_0'.format(args.epsilon, args.lr).replace(".","_")
-    setproctitle.setproctitle(args.prefix)
+    #setproctitle.setproctitle(args.prefix)
 
     train_log = open(args.prefix + "_train.log", "w")
     test_log = open(args.prefix + "_test.log", "w")

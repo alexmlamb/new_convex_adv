@@ -13,7 +13,7 @@ import warnings
 class DualNetwork(nn.Module):   
     def __init__(self, net, X, epsilon, 
                  proj=None, norm_type='l1', bounded_input=False, 
-                 data_parallel=True):
+                 data_parallel=True, l1_proj=None):
         """  
         This class creates the dual network. 
 

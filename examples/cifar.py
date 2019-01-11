@@ -15,7 +15,7 @@ import torchvision.transforms as transforms
 import torchvision.datasets as datasets
 import random
     
-import setproctitle
+#import setproctitle
 
 import problems as pblm
 from trainer import *
@@ -34,11 +34,11 @@ def select_model(m):
     return model
 
 if __name__ == "__main__": 
-    args = pblm.argparser(epsilon = 0.0347, starting_epsilon=0.001, batch_size = 50, 
+    args = pblm.argparser(epsilon = 0.0347, starting_epsilon=0.001, batch_size = 20, 
                 opt='sgd', lr=0.05)
 
     print("saving file to {}".format(args.prefix))
-    setproctitle.setproctitle(args.prefix)
+    #setproctitle.setproctitle(args.prefix)
 
     train_log = open(args.prefix + "_train.log", "w")
     test_log = open(args.prefix + "_test.log", "w")

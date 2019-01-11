@@ -13,6 +13,10 @@ from attacks import _pgd
 
 DEBUG = False
 
+do_mixup = True
+
+print('do mixup', do_mixup)
+
 def train_robust(loader, model, opt, epsilon, epoch, log, verbose, 
                 real_time=False, clip_grad=None, **kwargs):
     batch_time = AverageMeter()
@@ -27,6 +31,14 @@ def train_robust(loader, model, opt, epsilon, epoch, log, verbose,
     end = time.time()
     for i, (X,y) in enumerate(loader):
         X,y = X.cuda(), y.cuda().long()
+        print("X before train shape", X.shape)
+        if do_mixup:
+            batch_size = X.shape[0]
+            index_p = torch.randperm(batch_size).cuda()
+            lam = np.random.beta(0.5+1.0, 0.5)
+            X = lam*X + (1-lam)*X[index_p]
+        print("X after train shape", X.shape, lam)
+
         if y.dim() == 2: 
             y = y.squeeze(1)
         data_time.update(time.time() - end)
